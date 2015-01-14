@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.min.css" />
+	
+    <script src="../../libs/jquery/jquery.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/ractive/ractive.min.js"></script>
+    <script src="../../custom/js/custom.js"></script>
+    <!--local-->
+    
+    <script src="../dataContruct/PRODUCTUI.js"></script>
+    <script src="../dataContruct/template.js"></script>
+    <script src="../fileManager/fileManager.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+	<div id="main"> </div>
+	<!-- <button id="bt-add-product" onclick="fM.read('testfile','../fileManager/uploadFile.php')">Read file</button> -->
+</body>
+	<script>
+		var TEMP_ADD_PRODUCT = (function () {/*
+			<div id="contain-add-product">
+			{{#data}}
+				{{#if this.type == 'text'}} {0} {{/if}}
+				{{#if this.type == 'number'}} {2} {{/if}}
+				
+				{{#if this.type == 'link'}} {1} {{/if}}
+				{{#if this.type == 'array'}} {5} {{/if}}
+				
+				{{#if this.type == 'textArea'}} {3} {{/if}}
+				{{#if this.type == 'html'}} {4} {{/if}}
+			{{/data}}
+			<button id="bt-add-product" onclick="getProduct()">Add Product</button>
+			</div>
+		*/}).toString();
+		TEMP_ADD_PRODUCT = TEMP_ADD_PRODUCT.substring( 15, TEMP_ADD_PRODUCT.length - 3);
+		var TEMP_ADD_PRODUCT = String.format(TEMP_ADD_PRODUCT,TEMP_INPUT_TEXT, TEMP_INPUT_BROWSE, TEMP_INPUT_NUMBER, TEMP_INPUT_TEXTAREA, TEMP_INPUT_HTML, TEMP_INPUT_ARRAY);
+
+	</script>
+	<script src='../libs/ckeditor/ckeditor.js'></script>
+	<script>
+		function getProduct(){
+			var arr = PRODUCTUI.data;
+			var meta = PRODUCTUI.meta;
+			var item = {};
+			/*get data from field on window*/
+			for(var i=0; i < arr.length ; i++){
+				console.log(meta.type+'-'+arr[i].alias)
+				if(arr[i].type == 'text'){
+					item[arr[i].alias] = document.getElementById(meta.type+'-'+arr[i].alias).value;
+				}
+				if(arr[i].type == 'number'){
+					item[arr[i].alias] = Number(document.getElementById(meta.type+'-'+arr[i].alias).value);
+				}
+				if(arr[i].type == 'link'){
+					item[arr[i].alias] = document.getElementById(meta.type+'-'+arr[i].alias).value;
+				}
+				if(arr[i].type == 'array'){
+					var x = document.getElementById(meta.type+'-'+arr[i].alias).selectedIndex;
+					item[arr[i].alias] = document.getElementsByTagName("option")[x].value;
+				}
+				if(arr[i].type == 'textArea'){
+					item[arr[i].alias] = document.getElementById(meta.type+'-'+arr[i].alias).value;
+				}
+				if(arr[i].type == 'html'){
+					item[arr[i].alias] = window.frames[0].document.body.innerHTML;
+				}
+			}
+			/*input auto field*/
+			item['id'] = new Date().getTime();
+			item['createDate'] = new Date();
+			
+			console.log(item)
+		}
+		
+		var result = getQueryVariable('result');
+		
+	//	if(result != undefined){	
+			//fM.read('../dataContruct/PRODUCTUI.js','../fileManager/uploadFile.php');
+			var ractive = new Ractive({
+			     el: 'main',
+			     template: TEMP_ADD_PRODUCT,
+			     data: PRODUCTUI
+			});
+	//	}
+		
+	</script>
+</html>

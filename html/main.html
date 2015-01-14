@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<!--css-->
+    <link rel="stylesheet" type="text/css" href="../../libs/w2ui/w2ui-1.4.2.min.css" />
+  	<link rel="stylesheet" type="text/css" href="../../custom/css/icons.css" />
+  	<!--js-->
+    <script src="../../libs/jquery/jquery.min.js"></script>
+	<script src="../../libs/w2ui/w2ui-1.4.2.min.js"></script>
+    <script src="../../custom/js/custom.js"></script>
+</head>
+<body>
+<div id="layout-main" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"></div>
+<div id="toolbar"></div>
+
+<script type="text/javascript">
+	/*******************************************************/
+    var pstyle = 'border: 1px solid #dfdfdf; margin-bottom:1px;';
+    var panelsLayoutMain = [
+        { type: 'top', resizable: false, style: pstyle, content : 'layout-top'},
+        // Ở đây đặt dự phòng 1 panel để hiển thị thêm thông tin nhưng không show ra
+        { type: 'left', size: 200, resizable: false, style: pstyle, hidden: false, content: 'Left '},
+        { type: 'main', size: 200,style: pstyle, content: '<a>Nội dung chính<a>'},
+        { type: 'preview', size: '50%', resizable: false, hidden: false, style: pstyle, content: 'After Main Content' },
+        { type: 'right', size: 330, resizable: false, style: pstyle, content: 'Nội dung bên trái' },
+        { type: 'bottom', size: 50, resizable: false, hidden: false, style: pstyle, content: 'layout-bottom' }
+    ];
+    $().w2layout({
+	    name    : 'layout-main',
+	    panels  : panelsLayoutMain,
+	});
+	$('#layout-main').w2render('layout-main');  
+	/*******************************************************/
+    var panels = [
+        { type: 'top', size: 32, resizable: false, style: pstyle, content : 'layout-top'},
+        { type: 'main', size: 200,style: pstyle, content: '<a>Banner Content<a>'},
+    ];
+    $().w2layout({
+	    name    : 'layout-top',
+	    panels  : panels,
+	});
+	w2ui['layout-main'].content('top', w2ui['layout-top']); 
+	/*******************************/
+	var  items = [
+        { type: 'button',  id: 'home',  img: 'homeIcon', hint: 'Home' },
+        { type: 'break', id: 'break3' },
+        { type: 'html', id: 'flag-deleteSelector', html: "<div style='position:relative;' ><ul style='position:absolute; top:0; left:0;'><li >temp 1</li><li>temp 1</li><li>temp 1</li></ul></div>"},
+        { type: 'spacer' },
+        { type: 'break', id: 'break3' },
+        { type: 'button',  id: 'showleft',  caption: 'Show left', img: 'externalIcon', hint: 'Hint for item 5', },
+        { type: 'button',  id: 'showright',  caption: 'Show right', img: 'externalIcon', hint: 'Hint for item 5', },
+    ];
+	 $().w2toolbar({
+	    name    : 'toolbar',
+	    items  : items,
+	    onClick: function (event) {
+            if (event.target == 'showleft') {w2ui['layout-main'].toggle('left', true);}
+            if (event.target == 'showright') {w2ui['layout-main'].toggle('right', true);}
+            if (event.target == 'go') {}
+            if (event.target == 'home') {}
+            if (event.target == 'elUp') {};
+            if (event.target == 'btsave') {};
+        }
+	});
+	// set content as an object - auto loading
+	w2ui['layout-top'].content('top', w2ui['toolbar']);
+    /********************************************************/
+   var tabs = [
+        { id: 'tab1', caption: 'Tab 1' },
+        { id: 'tab2', caption: 'Tab 2' },
+        { id: 'tab3', caption: 'Tab 3' },
+        { id: 'tab4', caption: 'Tab 4' }
+    ];
+    $().w2tabs({
+	    name     : 'myTabs',
+        active     : 'tab1',
+        tabs    : tabs,
+        onClick: function (event) {
+            //$('#myTabsContent').html(event.target);
+        }
+	});
+	w2ui['layout-main'].content('main', w2ui['myTabs']);	
+    /**********************************************************/
+	$(document).ready(function(){
+		//w2ui['layout-main'].lock('right', 'Loading...', true);
+		
+	});
+		
+</script>
+</body>
+</html>

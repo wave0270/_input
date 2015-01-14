@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" type="text/css" href="../../libs/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	
+    <script src="../../libs/jquery/jquery.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../libs/ractive/ractive.min.js"></script>
+    <script src="../../libs/notify/notify.min.js"></script>
+    <script src="../../custom/js/custom.js"></script>
+    <!--local-->
+    
+    <script src="../dataContruct/LOGINUI.js"></script>
+    <script src="../dataContruct/template.js"></script>
+    <script src="../fileManager/fileManager.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+	<div id="page-login"> </div>
+</body>
+	<script>
+		var TEMP_SHOW_LOGIN = (function () {/*
+			<div id="contain-login">
+				<style> #contain-login label{ display:none; color:red;}</style>
+				<img src="../image/system/logo.png" />
+				{{#data}}
+					{{#if this.type == 'text' || this.type == 'password'}} {0} {{/if}}
+					{{#if this.type == 'array'}} {1} {{/if}}
+					{{#if this.type == 'button'}} {2} {{/if}}
+				{{/data}}
+			</div>
+		*/}).toString();
+		TEMP_SHOW_LOGIN = TEMP_SHOW_LOGIN.substring( 15, TEMP_SHOW_LOGIN.length - 3);
+		var TEMP_SHOW_LOGIN = String.format(TEMP_SHOW_LOGIN,TEMP_INPUT_TEXT, TEMP_SHOW_ARRAY,TEMP_SHOW_BUTTON);
+		var ractive = new Ractive({
+		     el: 'page-login',
+		     template: TEMP_SHOW_LOGIN,
+		     data: LOGINUI
+		});
+	</script>
+</html>

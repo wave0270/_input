@@ -1,27 +1,21 @@
 /**single inout template********************************/
 var TEMP_INPUT_TEXT = (function () {/*
-	<label>{{this.showName.value}}</label>
-	<input id="{{meta.type}}-{{this.alias}}" type="{{this.type}}" placeholder="{{this.showName.value}}" class="block full-width field-light">
+	<input id="{{meta.type}}-{{this.alias}}" type="text" placeholder="{{this.showName.value}}" class="block full-width field-light">
 */}).toString();
 TEMP_INPUT_TEXT = TEMP_INPUT_TEXT.substring( 15, TEMP_INPUT_TEXT.length - 3);
 
 var TEMP_INPUT_NUMBER = (function () {/*
-	<label>{{this.showName.value}}</label><label class="right"> {{this.exchangeRate.value}}</label>
-	<input id="{{meta.type}}-{{this.alias}}" type="{{this.type}}" placeholder="{{this.showName.value}}" class="block full-width field-light">
+	<input id="{{meta.type}}-{{this.alias}}" type="number" placeholder="{{this.showName.value}} {{this.exchangeRate.value}}" class="block full-width field-light">
 */}).toString();
 TEMP_INPUT_NUMBER = TEMP_INPUT_NUMBER.substring( 15, TEMP_INPUT_NUMBER.length - 3);
 
 var TEMP_INPUT_BROWSE = (function () {/*
-	<label>{{this.showName.value}}</label>
-	<input id="{{meta.type}}-{{this.alias}}" type="{{this.type}}" placeholder="{{this.showName.value}}" class="block full-width field-light"/>
-	
+	<input id="{{meta.type}}-{{this.alias}}" type="text" placeholder="{{this.showName.value}}" class="block full-width field-light"/>
 	<button id="button" class="full-width ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Browse</span></button>
-	
 */}).toString();
 TEMP_INPUT_BROWSE = TEMP_INPUT_BROWSE.substring( 15, TEMP_INPUT_BROWSE.length - 3);
 
 var TEMP_INPUT_ARRAY = (function () {/*
-	<label >{{this.showName.value}}</label>
 	<select class="block full-width field-light">
 	  <option value="1">One</option>
 	  <option value="2">Two</option>
@@ -31,13 +25,11 @@ var TEMP_INPUT_ARRAY = (function () {/*
 TEMP_INPUT_ARRAY = TEMP_INPUT_ARRAY.substring( 15, TEMP_INPUT_ARRAY.length - 3);
 
 var TEMP_INPUT_TEXTAREA = (function () {/*
-	<label>{{this.showName.value}}</label>
 	<textarea id="{{meta.type}}-{{this.alias}}" rows="3" placeholder="{{this.showName.value}}" class="block full-width field-light"></textarea>
 */}).toString();
 TEMP_INPUT_TEXTAREA = TEMP_INPUT_TEXTAREA.substring( 15, TEMP_INPUT_TEXTAREA.length - 3);
 
 var TEMP_INPUT_HTML = (function () {/*
-		<label>{{this.showName.value}}</label>
 		<textarea id="{{meta.type}}-{{this.alias}}" name="text" class="ckeditor form-control" rows="3" placeholder="{{this.showName.value}}"></textarea>
 	
 */}).toString();

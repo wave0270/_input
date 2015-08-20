@@ -32,7 +32,7 @@ $(function () {
     );
 	
     if (window.location.hostname === 'blueimp.github.io') {
-    	console.log("From hostname : blueimp.github.io")
+    	console.log("From hostname : blueimp.github.io");
         // Demo settings:
         $('#fileupload').fileupload('option', {
             url: '//jquery-file-upload.appspot.com/',
@@ -68,6 +68,7 @@ $(function () {
         }).always(function () {
             $(this).removeClass('fileupload-processing');
         }).done(function (result) {
+        	console.log(result)
     		$(this).fileupload('option', 'done')
             	.call(this, $.Event('done'), {result: result});
             

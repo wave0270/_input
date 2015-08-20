@@ -40,7 +40,7 @@ var PRODUCTUI = {
 		},
 		{
 			alias : 'img',
-			type : 'link',
+			type : 'linkUrl',
 			icon : '',
 			showName : {
 				value : 'Hình ảnh',
